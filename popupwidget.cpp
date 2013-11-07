@@ -81,7 +81,7 @@ void PopupWidget::closeEvent(QCloseEvent *event)
 void PopupWidget::search(QString word)
 {
     QUrl url = QUrl(QString("http://ejje.weblio.jp/content/") + word);
-    qDebug() << url;
+//    qDebug() << url;
     ui->webView->load(url);
     emit urlChanged(url);
 }
@@ -90,7 +90,7 @@ void PopupWidget::search()
 {
     QString word = ui->lineEdit->text();
     QUrl url = QUrl(QString("http://ejje.weblio.jp/content/") + word);
-    qDebug() << url;
+//    qDebug() << url;
     ui->webView->load(url);
     emit urlChanged(url);
 }
@@ -100,9 +100,9 @@ void PopupWidget::on_webView_loadProgress(int progress)
     Q_UNUSED(progress)
     if (!isScrolled) {
         QWebFrame *frame = ui->webView->page()->mainFrame();
-        int min = frame->scrollBarMinimum(Qt::Vertical);
+//        int min = frame->scrollBarMinimum(Qt::Vertical);
         int max = frame->scrollBarMaximum(Qt::Vertical);
-        qDebug() << "Max=" << max << " Min=" << min;
+//        qDebug() << "Max=" << max << " Min=" << min;
         if (max > weblioPosition) {
             frame->setScrollBarValue(Qt::Vertical, weblioPosition);
 //            qDebug() << "Scroll";
