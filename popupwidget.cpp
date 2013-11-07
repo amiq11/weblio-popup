@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QCloseEvent>
 #include <QWebFrame>
+#include <QTimer>
 
 const int PopupWidget::weblioPosition = 330;
 
@@ -13,7 +14,7 @@ PopupWidget::PopupWidget(QWidget *parent) :
     ui->setupUi(this);
 
     isScrolled = false;
-
+    canToggle  = true;
     shortcut = new QxtGlobalShortcut(this);
     if (!shortcut->setShortcut(QKeySequence("Ctrl+F12"))) {
         qWarning() << "Ctrl+12 is already assigned!";
@@ -31,16 +32,24 @@ PopupWidget::~PopupWidget()
 
 void PopupWidget::toggleShowUp()
 {
+    if (!canToggle) return;
+
     if (isVisible()) {
-//        qDebug() << "wei..";
+//        qDebug() << "hide";
         hide();
+        canToggle = false;
+        QTimer::singleShot(500, this, SLOT(enableToggle()));
     } else {
-//        qDebug() << "wei!";
+//        qDebug() << "show";
+        // Open Display
         setWindowFlags(Qt::WindowStaysOnTopHint);
-        showNormal();
         activateWindow(); //qApp->setActiveWindow()も必要
         qApp->setActiveWindow(this); //activateWindow()も必要
+        showNormal();
+
         ui->lineEdit->setFocus();
+        canToggle = false;
+        QTimer::singleShot(500, this, SLOT(enableToggle()));
     }
 }
 
@@ -66,7 +75,6 @@ void PopupWidget::closeEvent(QCloseEvent *event)
     if (trayIcon->isVisible()) {
         hide();
         event->ignore();
-//        qDebug() << "wei...";
     }
 }
 
@@ -112,3 +120,4 @@ void PopupWidget::on_actionSearch_triggered()
 {
     search();
 }
+

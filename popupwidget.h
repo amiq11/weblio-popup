@@ -29,6 +29,8 @@ private slots:
     void toggleShowUp();
     void search(QString word);
     void search();
+    void enableToggle() { canToggle = true; }
+    void disableToggle() { canToggle = false; }
 
     void on_webView_loadProgress(int progress);
 
@@ -44,6 +46,7 @@ private:
     QAction           *quitAction;
     bool               isScrolled;
     static const int   weblioPosition;
+    bool               canToggle;
 
     void setupTray();
     void setupTrayMenu();
