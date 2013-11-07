@@ -6,7 +6,7 @@
 ## 使い方
 次に述べるインスト―ル方法に従った場合は、以下のコマンドで実行出来ます。
 ```
-$ weblio-popup &
+weblio-popup &
 ```
 
 起動したらとりあえず`Ctrl+F12`を押し、ポップアップした状態でhello、などと打ってみてください。気が済んだら、もう一度`Ctrl+F12`を押しましょう。
@@ -17,17 +17,17 @@ $ weblio-popup &
 - Qxt (0.6.1-7でテスト済)
 - Ubuntu 13.10では以下でインストール可能です。
 ```
-$ sudo apt-get install qt4-qmake libqt4-dev libqxt-dev
+sudo apt-get install qt4-qmake libqt4-dev libqxt-dev
 ```
 
 ### ビルド
 以下のようなコマンドでビルドできます。
 ```
-$ git clone https://github.com/amiq11/weblio-popup.git
-$ cd weblio-popup
-$ qmake-qt4
-$ make
-$ sudo cp popupDictionary /usr/local/bin/weblio-popup
+git clone https://github.com/amiq11/weblio-popup.git
+cd weblio-popup
+qmake-qt4
+make
+sudo cp popupDictionary /usr/local/bin/weblio-popup
 ```
 
 # LICENSE
