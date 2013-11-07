@@ -12,16 +12,16 @@ $ weblio-popup &
 起動したらとりあえず`Ctrl+F12`を押し、ポップアップした状態でhello、などと打ってみてください。気が済んだら、もう一度`Ctrl+F12`を押しましょう。
 
 ## インストール
-- 必要
--- Qt4 (4.8.4でテスト済)
--- Qxt (0.6.1-7でテスト済)
-
-Ubuntu 13.10では以下でインストール可能
+### 環境
+- Qt4 (4.8.4でテスト済)
+- Qxt (0.6.1-7でテスト済)
+- Ubuntu 13.10では以下でインストール可能です。
 ```
 $ sudo apt-get install qt4-qmake libqt4-dev libqxt-dev
 ```
 
-- 以下のようなコマンドでビルドできます。
+### ビルド
+以下のようなコマンドでビルドできます。
 ```
 $ git clone https://github.com/amiq11/weblio-popup.git
 $ cd weblio-popup
