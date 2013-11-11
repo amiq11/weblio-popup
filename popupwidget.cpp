@@ -35,16 +35,17 @@ void PopupWidget::toggleShowUp()
     if (!canToggle) return;
 
     if (isVisible()) {
-//        qDebug() << "hide";
+        // Hide Window
+        prevGeometry = saveGeometry();
         hide();
         canToggle = false;
         QTimer::singleShot(500, this, SLOT(enableToggle()));
     } else {
-//        qDebug() << "show";
-        // Open Display
+        // Open Window
         setWindowFlags(Qt::WindowStaysOnTopHint);
         activateWindow(); //qApp->setActiveWindow()も必要
         qApp->setActiveWindow(this); //activateWindow()も必要
+        restoreGeometry(prevGeometry);
         showNormal();
 
         ui->lineEdit->setFocus();
@@ -73,6 +74,7 @@ void PopupWidget::setupTrayMenu()
 void PopupWidget::closeEvent(QCloseEvent *event)
 {
     if (trayIcon->isVisible()) {
+        prevGeometry = saveGeometry();
         hide();
         event->ignore();
     }
@@ -81,7 +83,6 @@ void PopupWidget::closeEvent(QCloseEvent *event)
 void PopupWidget::search(QString word)
 {
     QUrl url = QUrl(QString("http://ejje.weblio.jp/content/") + word);
-//    qDebug() << url;
     ui->webView->load(url);
     emit urlChanged(url);
 }
@@ -90,7 +91,6 @@ void PopupWidget::search()
 {
     QString word = ui->lineEdit->text();
     QUrl url = QUrl(QString("http://ejje.weblio.jp/content/") + word);
-//    qDebug() << url;
     ui->webView->load(url);
     emit urlChanged(url);
 }
@@ -100,12 +100,9 @@ void PopupWidget::on_webView_loadProgress(int progress)
     Q_UNUSED(progress)
     if (!isScrolled) {
         QWebFrame *frame = ui->webView->page()->mainFrame();
-//        int min = frame->scrollBarMinimum(Qt::Vertical);
         int max = frame->scrollBarMaximum(Qt::Vertical);
-//        qDebug() << "Max=" << max << " Min=" << min;
         if (max > weblioPosition) {
             frame->setScrollBarValue(Qt::Vertical, weblioPosition);
-//            qDebug() << "Scroll";
             isScrolled = true;
         }
     }

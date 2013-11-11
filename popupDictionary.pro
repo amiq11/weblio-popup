@@ -8,9 +8,8 @@ QT       += core gui webkit
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = popupDictionary
+TARGET = weblio-popup
 TEMPLATE = app
-
 
 SOURCES += main.cpp\
         popupwidget.cpp
@@ -30,3 +29,10 @@ unix {
 
 RESOURCES += \
     resources.qrc
+
+# install settings
+
+unix {
+    target.path = /usr/local/bin
+    INSTALLS += target
+}

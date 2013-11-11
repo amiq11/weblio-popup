@@ -47,6 +47,7 @@ private:
     bool               isScrolled;
     static const int   weblioPosition;
     bool               canToggle;
+    QByteArray         prevGeometry;
 
     void setupTray();
     void setupTrayMenu();
