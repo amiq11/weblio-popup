@@ -28,7 +28,7 @@ git clone https://github.com/amiq11/weblio-popup.git
 cd weblio-popup
 qmake-qt4
 make
-sudo cp popupDictionary /usr/local/bin/weblio-popup
+sudo make install
 ```
 
 # LICENSE
