@@ -27,6 +27,10 @@ PopupWidget::PopupWidget(QWidget *parent) :
 
 PopupWidget::~PopupWidget()
 {
+    delete shortcut;
+    delete quitAction;
+    delete trayMenu;
+    delete trayIcon;
     delete ui;
 }
 
