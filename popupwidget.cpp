@@ -42,6 +42,7 @@ void PopupWidget::toggleShowUp()
         // Hide Window
         prevGeometry = saveGeometry();
         hide();
+
         canToggle = false;
         QTimer::singleShot(500, this, SLOT(enableToggle()));
     } else {
@@ -53,6 +54,8 @@ void PopupWidget::toggleShowUp()
         showNormal();
 
         ui->lineEdit->setFocus();
+        ui->lineEdit->selectAll();
+
         canToggle = false;
         QTimer::singleShot(500, this, SLOT(enableToggle()));
     }
