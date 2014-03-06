@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Weblio Popup
+GenericName=Dictionary
+Comment=Search Words
+Exec=/usr/local/bin/weblio-popup
+TryExec=weblio-popup
+Icon=/usr/local/share/weblio-popup/icon.svg
+Type=Application
+Terminal=false
+Categories=Utility;TextTools;Dictionary

@@ -31,8 +31,17 @@ RESOURCES += \
     resources.qrc
 
 # install settings
-
 unix {
+    # Desktop
+    desktop.path  = /usr/share/applications
+    desktop.files = ./weblio-popup.desktop
+    # Icon
+    icon.path     = /usr/local/share/weblio-popup
+    icon.files    = ./img/icon.svg
+    # Exec file
     target.path = /usr/local/bin
+    # Add to a installation list
+    INSTALLS += desktop
+    INSTALLS += icon
     INSTALLS += target
 }
