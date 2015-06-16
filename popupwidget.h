@@ -1,11 +1,12 @@
 #ifndef POPUPWIDGET_H
 #define POPUPWIDGET_H
 
-#include <QWidget>
 #include <QxtGlobalShortcut>
-#include <QSystemTrayIcon>
 #include <QMenu>
+#include <QShortcut>
+#include <QSystemTrayIcon>
 #include <QUrl>
+#include <QWidget>
 
 namespace Ui {
 class PopupWidget;
@@ -27,6 +28,7 @@ signals:
 
 private slots:
     void toggleShowUp();
+    void focusSearchLineEdit();
     void search(QString word);
     void search();
     void enableToggle() { canToggle = true; }
@@ -41,6 +43,7 @@ private slots:
 private:
     Ui::PopupWidget   *ui;
     QxtGlobalShortcut *shortcut;
+    QShortcut         *lineEditShortcut;
     QSystemTrayIcon   *trayIcon;
     QMenu             *trayMenu;
     QAction           *quitAction;

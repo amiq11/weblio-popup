@@ -23,11 +23,16 @@ PopupWidget::PopupWidget(QWidget *parent) :
                 this,     SLOT(toggleShowUp()));\
         setupTray();
     }
+
+    lineEditShortcut = new QShortcut(QKeySequence("Ctrl+L"), this);
+    connect(lineEditShortcut, SIGNAL(activated()),
+            this, SLOT(focusSearchLineEdit()));
 }
 
 PopupWidget::~PopupWidget()
 {
     delete shortcut;
+    delete lineEditShortcut;
     delete quitAction;
     delete trayMenu;
     delete trayIcon;
@@ -59,6 +64,12 @@ void PopupWidget::toggleShowUp()
         canToggle = false;
         QTimer::singleShot(500, this, SLOT(enableToggle()));
     }
+}
+
+void PopupWidget::focusSearchLineEdit()
+{
+    ui->lineEdit->setFocus();
+    ui->lineEdit->selectAll();
 }
 
 void PopupWidget::setupTray()
